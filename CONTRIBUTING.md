@@ -1,7 +1,7 @@
 
 # Contributing to busPwn 🚀
 
-Thank you for your interest in contributing to **busPwn** – the Modbus hacking framework! We welcome contributions from the community to help improve and grow this project.
+Thank you for your interest in contributing to **BusPwn** – the Modbus hacking framework! We welcome contributions from the community to help improve and grow this project.
 
 ---
 
@@ -72,6 +72,6 @@ Be respectful and constructive. Any disrespectful or unethical behavior will not
 
 ## 📬 Questions?
 
-Feel free to open an issue or reach out on [Twitter](https://twitter.com/Aravind0x7).
+Feel free to open an issue or reach out on [Mail Me!](mailto:gnanaaravind07@gmail.com).
 
 Let’s make Modbus security research more accessible, together. 💪
