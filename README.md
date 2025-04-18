@@ -24,9 +24,9 @@
 git clone https://github.com/aravind0x7/BusPwn.git
 cd BusPwn
 ```
-# 🐍 Optional: Create a Virtual Environment
+## 🐍 Optional: Create a Virtual Environment
 
-It's recommended to use a virtual environment to manage dependencies:
+**It's recommended to use a virtual environment to manage dependencies:**
 
 ```bash
 # Create a virtual environment
@@ -37,6 +37,7 @@ python -m venv venv
 venv\Scripts\activate
 # On Linux/macOS
 source venv/bin/activate
+```
 This helps avoid conflicts between different Python projects.
 
 2. **Install dependencies:**
