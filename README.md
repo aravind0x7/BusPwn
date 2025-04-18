@@ -77,7 +77,13 @@ Feel free to fork the repo, submit pull requests, or open issues. If you want to
 ## 🛡️ License
 This project is licensed under the **MIT License** – see the [[LICENSE](https://github.com/aravind0x7/BusPwn/blob/main/LICENSE) file for details.
 
----
+## ☕ Support
+
+If you find **busPwn** useful or cool, consider buying me a coffee!
+
+<a href="https://www.buymeacoffee.com/aravind0x7" target="_blank">
+  <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="50" width="210">
+</a>
 
 > **“If it speaks Modbus, I make it scream.”**  
 > - aravind0x7
