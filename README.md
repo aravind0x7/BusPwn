@@ -1,6 +1,4 @@
 ![busPwn](https://s1.ezgif.com/tmp/ezgif-11ea92e96d9f1f.gif)
-# BusPwn - Modbus Hacking Framework ⚡
-
 `BusPwn` is a **GUI-based Modbus hacking framework** designed for testing and exploiting vulnerabilities in Modbus-based systems, often used in **Industrial Control Systems (ICS)** and **Operational Technology (OT)**. This tool is intended for cybersecurity professionals, red teamers, and researchers to explore & pentest **Modbus TCP** protocols.
 
 ## 🔥 Features
