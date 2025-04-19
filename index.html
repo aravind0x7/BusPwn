@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BusPwn - Modbus Hacking Framework</title>
+  <style>
+    body {
+      background-color: #0d0d0d;
+      color: #00ffcc;
+      font-family: 'Courier New', monospace;
+      margin: 0;
+      padding: 2rem;
+    }
+    h1, h2, h3 {
+      color: #00ffcc;
+    }
+    a {
+      color: #ff6666;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    code, pre {
+      background-color: #1a1a1a;
+      padding: 0.5rem;
+      display: block;
+      white-space: pre-wrap;
+      border-left: 3px solid #00ffcc;
+    }
+    .section {
+      margin-bottom: 2rem;
+    }
+    .banner {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+    .quote {
+      font-style: italic;
+      color: #999;
+      margin-top: 1rem;
+    }
+    .warning {
+      color: #ff3333;
+    }
+  </style>
+</head>
+<body>
+  <div class="section">
+    <div class="banner">⚡ BusPwn - Modbus Pentesting Framework</div>
+    <p>"0x7 — breaking binaries & boundaries."</p>
+    <img src="https://raw.githubusercontent.com/aravind0x7/BusPwn/refs/heads/main/assets/ezgif-11ea92e96d9f1f.gif" alt="busPwn demo" width="100%" />
+  </div>
+
+  <div class="section">
+    <h2>🔥 Features</h2>
+    <ul>
+      <li>GUI Interface</li>
+      <li>Modbus Scanning: Holding Registers, Coils, Discrete Inputs, Input Registers</li>
+      <li>Exploitation: Command Injection, Register/Coil Writing</li>
+      <li>DoS Attacks with adjustable intensity & duration</li>
+      <li>Cross-platform Python support</li>
+      <li>Great for research, red teaming, and OT pentesting</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>🚀 Installation</h2>
+    <pre><code>git clone https://github.com/aravind0x7/BusPwn.git
+cd BusPwn
+
+# Optional: Create virtual environment
+python -m venv venv
+source venv/bin/activate  # or venv\Scripts\activate on Windows
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run the tool
+python pwn.py</code></pre>
+  </div>
+
+  <div class="section">
+    <h2>🔧 Usage</h2>
+    <p>After launching, open your browser and navigate to <a href="http://127.0.0.1:5000">http://127.0.0.1:5000</a> to use the GUI.</p>
+    <h3>🛡️ Modbus Connection Test</h3>
+    <ul>
+      <li>Enter Target IP and Port (default: 502)</li>
+      <li>Click <strong>Test Connection</strong> to check if the device is reachable</li>
+    </ul>
+
+    <h3>🔍 Scan Modbus</h3>
+    <ul>
+      <li>Enter Target IP, Port, and Slave ID (default: 1)</li>
+      <li>Select register types to scan: Holding Registers, Coils, Input Registers, Discrete Inputs</li>
+      <li>Set Start and End Address range</li>
+      <li>Click <strong>Start Scan</strong> and observe results in real time</li>
+      <li>You can stop the scan any time using <strong>Stop Scan</strong></li>
+    </ul>
+
+    <h3>💀 Exploit Modbus</h3>
+    <ul>
+      <li>Target IP, Port, and Slave ID are required</li>
+      <li>For <strong>Write Register</strong>, input Register Address and Value</li>
+      <li>For <strong>Write Coil</strong>, input Coil Address and toggle ON/OFF</li>
+      <li>Click <strong>Execute Exploit</strong> to perform the write operation</li>
+    </ul>
+
+    <h3>⚠️ DoS Attack</h3>
+    <ul>
+      <li>Select either Write Register Flooding or Write Coil Flooding</li>
+      <li>Specify Address, Intensity (1–5), Request Rate, and Duration</li>
+      <li>Click <strong>Launch DoS Attack</strong> to start</li>
+      <li>You can stop it at any time using <strong>Stop Attack</strong></li>
+    </ul>
+
+    <h3>🕵️‍♂️ Results Panel</h3>
+    <ul>
+      <li>View real-time Scan Results, Exploit Logs, and DoS Attack Feedback</li>
+      <li>Status indicators will guide you through the tool's activity</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>🎯 Built For</h2>
+    <ul>
+      <li>Cybersecurity professionals</li>
+      <li>Red teamers</li>
+      <li>ICS/OT researchers</li>
+      <li>Mechatronics and OT engineers</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>⚙️ Developed By</h2>
+    <p><strong>aravind0x7</strong><br/>
+    Mechatronics Engineer | OT Security Enthusiast<br/>
+    <a href="https://github.com/aravind0x7">GitHub</a> | 
+    <a href="https://aravind07.medium.com/">Medium</a> | 
+    <a href="https://instagram.com/aravind0x7">Instagram</a></p>
+  </div>
+
+  <div class="section">
+    <h2>☕ Support</h2>
+    <p>If you find <strong>busPwn</strong> useful or cool, consider buying me a coffee!</p>
+    <a href="https://www.buymeacoffee.com/aravind0x7" target="_blank">
+      <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="50" width="210">
+    </a>
+  </div>
+
+  <div class="quote">“If it speaks Modbus, I make it scream.” – aravind0x7</div>
+</body>
+</html>
