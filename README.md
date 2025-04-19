@@ -66,8 +66,8 @@ After launching the tool, access the localhost ip ([127.0.0.1:5000](https://127.
 - **OT engineers** wanting to understand security flaws in Modbus protocols.
 
 ## ⚙️ Developed By
-**aravind0x7**  
-Mechatronics Engineer | OT Security Enthusiast  
+**Gnana Aravind K (aravind0x7)**  
+Mechatronics Engineer | Hacktivist | OT Security Enthusiast  
 [GitHub](https://github.com/aravind0x7) | [Medium](https://aravind07.medium.com/) | [Instagram](https://instagram.com/aravind0x7)
 
 ## 🧠 Contributing
