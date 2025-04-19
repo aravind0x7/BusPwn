@@ -75,7 +75,7 @@ Mechatronics Engineer | OT Security Enthusiast
 Feel free to fork the repo, submit pull requests, or open issues. If you want to contribute to `BusPwn`, check out the [contributing guide](CONTRIBUTING.md) for more details.
 
 ## 🛡️ License
-This project is licensed under the **MIT License** – see the [[LICENSE](https://github.com/aravind0x7/BusPwn/blob/main/LICENSE) file for details.
+This project is licensed under the **MIT License** – see the [LICENSE](https://github.com/aravind0x7/BusPwn/blob/main/LICENSE) file for details.
 
 ## ☕ Support
 
