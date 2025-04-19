@@ -11,8 +11,8 @@ Thank you for your interest in contributing to **BusPwn** – the Modbus hacking
 Click the "Fork" button on the top-right corner of this page and clone your fork locally:
 
 ```bash
-git clone https://github.com/your-username/busPwn.git
-cd busPwn
+git clone https://github.com/aravind0x7/BusPwn.git
+cd BusPwn
 ```
 
 ### 2. Create a New Branch
