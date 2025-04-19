@@ -85,5 +85,4 @@ If you find **busPwn** useful or cool, consider buying me a coffee!
   <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="50" width="210">
 </a>
 
-> **“If it speaks Modbus, I make it scream.”**  
-> - aravind0x7
+> **“If it speaks Modbus, I make it scream.”** - aravind0x7
