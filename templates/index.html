@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚡ BusPwn - Modbus Pentesting Framework</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>⚡ BusPwn ⚡</h1>
+        <h1>🔥 Modbus Pentesting Framework 🔥</h1>
+        <h4 class="hacker-text" id="hacker-quote">"The quieter you become, the more you are able to hear." - Kali Linux</h4>
+        
+        <div class="form-section">
+            <h2>🛡️ Modbus Connection Test</h2>
+            <input type="text" id="test_ip" placeholder="Target IP">
+            <input type="number" id="test_port" placeholder="Port (Default: 502)">
+            <button onclick="testModbus()">Test Connection</button>
+            <div id="test-result" class="result-mini"></div>
+        </div>
+
+        <div class="form-section">
+            <h2>🔍 Scan Modbus</h2>
+            <div class="ip-port-group">
+                <input type="text" id="scan_ip" placeholder="Target IP">
+                <input type="number" id="scan_port" placeholder="Port (Default: 502)">
+                <input type="number" id="scan_slave_id" placeholder="Slave ID (Default: 1)">
+            </div>
+            
+            <div class="checkbox-group">
+                <label><input type="checkbox" id="discover_slave_ids"> Discover Slave IDs</label>
+                <div class="slider-group" id="slave-id-range">
+                    <span>Range: </span>
+                    <input type="number" id="slave_id_start" placeholder="Start ID (1)" value="1" min="1" max="255">
+                    <span>to</span>
+                    <input type="number" id="slave_id_end" placeholder="End ID (255)" value="255" min="1" max="255">
+                </div>
+            </div>
+            
+            <div class="address-group">
+                <input type="number" id="scan_start" placeholder="Start Address">
+                <input type="number" id="scan_end" placeholder="End Address">
+            </div>
+            
+            <div class="checkbox-group">
+                <h3>Scan Options</h3>
+                <label><input type="checkbox" id="scan_registers"> Holding Registers</label>
+                <label><input type="checkbox" id="scan_coils"> Coils</label>
+                <label><input type="checkbox" id="scan_discrete_inputs"> Discrete Inputs</label>
+                <label><input type="checkbox" id="scan_input_registers"> Input Registers</label>
+            </div>
+            
+            <div class="button-group">
+                <button onclick="startScan()" class="primary-button">Start Scan</button>
+                <button onclick="stopScan()" class="secondary-button">Stop Scan</button>
+            </div>
+            
+            <div id="scan-progress" class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+                <div class="progress-text" id="progress-text">Ready</div>
+            </div>
+        </div>
+        
+        <div class="form-section">
+            <h2>💀 Exploit Modbus</h2>
+            <div class="ip-port-group">
+                <input type="text" id="exploit_ip" placeholder="Target IP">
+                <input type="number" id="exploit_port" placeholder="Port (Default: 502)">
+                <input type="number" id="exploit_slave_id" placeholder="Slave ID (Default: 1)">
+            </div>
+            
+            <div class="tabs">
+                <button class="tab-button active" onclick="openTab(event, 'single-exploit')">Single Exploit</button>
+                <button class="tab-button" onclick="openTab(event, 'dos-attack')">DoS Attack</button>
+            </div>
+            
+            <div id="single-exploit" class="tab-content" style="display:block">
+                <div class="checkbox-group">
+                    <label><input type="checkbox" id="write_register"> Write Register</label>
+                    <input type="number" id="register_address" placeholder="Register Address">
+                    <input type="number" id="register_value" placeholder="Value">
+                </div>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" id="write_coil"> Write Coil</label>
+                    <input type="number" id="coil_address" placeholder="Coil Address">
+                    <select id="coil_value">
+                        <option value="true">ON</option>
+                        <option value="false">OFF</option>
+                    </select>
+                </div>
+                
+                <button onclick="startExploit()" class="danger-button">Execute Exploit</button>
+            </div>
+            
+            <div id="dos-attack" class="tab-content">
+                <div class="attack-description">
+                    <p>⚠️ Warning: DoS attacks may disrupt or damage industrial systems. Use responsibly and only on systems you own or have permission to test.</p>
+                </div>
+                
+                <div class="checkbox-group">
+                    <label><input type="checkbox" id="dos_write_register"> Write Register Flooding</label>
+                    <input type="number" id="dos_register_address" placeholder="Register Address">
+                </div>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" id="dos_write_coil"> Write Coil Flooding</label>
+                    <input type="number" id="dos_coil_address" placeholder="Coil Address">
+                </div>
+                
+                <div class="attack-options">
+                    <div class="slider-group">
+                        <label for="intensity">Attack Intensity:</label>
+                        <input type="range" id="intensity" min="1" max="10" value="3">
+                        <span id="intensity-value">3</span>
+                    </div>
+                    
+                    <div class="slider-group">
+                        <label for="rate">Request Rate (per second):</label>
+                        <input type="range" id="rate" min="1" max="100" value="10">
+                        <span id="rate-value">10</span>
+                    </div>
+                    
+                    <div class="slider-group">
+                        <label for="duration">Duration (seconds, 0 = until stopped):</label>
+                        <input type="number" id="duration" min="0" max="3600" value="10">
+                    </div>
+                </div>
+                
+                <div class="button-group">
+                    <button onclick="startDosAttack()" class="critical-button">Launch DoS Attack</button>
+                    <button onclick="stopDosAttack()" class="warning-button">Stop Attack</button>
+                </div>
+                
+                <div id="dos-status" class="status-indicator">
+                    Status: Idle
+                </div>
+            </div>
+        </div>
+        
+        <div class="result-section">
+            <h2>🕵️‍♂️ Results</h2>
+            <div class="result-tabs">
+                <button class="result-tab active" onclick="showResultTab('scan-results')">Scan Results</button>
+                <button class="result-tab" onclick="showResultTab('exploit-results')">Exploit Results</button>
+                <button class="result-tab" onclick="showResultTab('dos-results')">DoS Attack Results</button>
+            </div>
+            <div id="scan-results" class="result-tab-content" style="display:block">
+                <pre id="scan-output">Awaiting scan results...</pre>
+            </div>
+            <div id="exploit-results" class="result-tab-content">
+                <pre id="exploit-output">Awaiting exploit results...</pre>
+            </div>
+            <div id="dos-results" class="result-tab-content">
+                <pre id="dos-output">Awaiting DoS attack results...</pre>
+            </div>
+        </div>
+    </div>
+  
+    <footer>
+        <p>- Modbus Pentesting Framework "BusPwn Version_1.0" for OT Rebels -</p>
+        <p>- crafted with ⚡ by aravind0x7 -</p>
+    </footer>
+    
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        // Quote rotation
+        function updateQuote() {
+            const quotes = [
+                "Welcome to BusPwn — where Modbus meets Mayhem.",
+                "Pwn the bus. Own the process.",
+                "This isn’t OT pentesting. It’s protocol poetry.",
+                "Oh, you still trust Modbus? That’s cute.",
+                "0x7 — breaking binaries & boundaries."
+            ];
+            document.getElementById("hacker-quote").innerText = '"' + quotes[Math.floor(Math.random() * quotes.length)] + '"';
+        }
+        setInterval(updateQuote, 5000);
+        
+        // Tab functionality
+        function openTab(evt, tabName) {
+            var i, tabcontent, tabbuttons;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            
+            tabbuttons = document.getElementsByClassName("tab-button");
+            for (i = 0; i < tabbuttons.length; i++) {
+                tabbuttons[i].className = tabbuttons[i].className.replace(" active", "");
+            }
+            
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+        
+        // Show result tabs
+        function showResultTab(tabName, event) {
+    var i, tabcontent, tabbuttons;
+    tabcontent = document.getElementsByClassName("result-tab-content");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    
+    tabbuttons = document.getElementsByClassName("result-tab");
+    for (i = 0; i < tabbuttons.length; i++) {
+        tabbuttons[i].className = tabbuttons[i].className.replace(" active", "");
+    }
+    
+    document.getElementById(tabName).style.display = "block";
+    
+    // Only update the active class if an event was provided
+    if (event && event.currentTarget) {
+        event.currentTarget.className += " active";
+    } else {
+        // Find and activate the tab button based on tabName
+        var tabButtons = document.getElementsByClassName("result-tab");
+        for (i = 0; i < tabButtons.length; i++) {
+            if (tabButtons[i].textContent.toLowerCase().includes(tabName.split('-')[0])) {
+                tabButtons[i].className += " active";
+            }
+        }
+    }
+}
+        
+        // Slider updates
+        document.getElementById("intensity").addEventListener("input", function() {
+            document.getElementById("intensity-value").textContent = this.value;
+        });
+        
+        document.getElementById("rate").addEventListener("input", function() {
+            document.getElementById("rate-value").textContent = this.value;
+        });
+        
+        // Modbus connection test
+        function testModbus() {
+            const ip = document.getElementById("test_ip").value;
+            const port = document.getElementById("test_port").value || 502;
+            
+            if (!ip) {
+                alert("Target IP is required!");
+                return;
+            }
+            
+            const testResult = document.getElementById("test-result");
+            testResult.innerHTML = "Testing connection...";
+            testResult.className = "result-mini testing";
+            
+            fetch('/modbus_test', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ ip, port }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.modbus_available) {
+                    testResult.innerHTML = "✅ " + data.message;
+                    testResult.className = "result-mini success";
+                } else {
+                    testResult.innerHTML = "❌ " + data.message;
+                    testResult.className = "result-mini error";
+                }
+            })
+            .catch(error => {
+                testResult.innerHTML = "❌ Error: " + error;
+                testResult.className = "result-mini error";
+            });
+        }
+        
+        // Function to start scan
+        function startScan() {
+            const ip = document.getElementById("scan_ip").value;
+            const port = document.getElementById("scan_port").value || 502;
+            const slave_id = document.getElementById("scan_slave_id").value || 1;
+            const start_address = document.getElementById("scan_start").value || 0;
+            const end_address = document.getElementById("scan_end").value || 10;
+            
+            // Check if any scan option or slave ID discovery is selected
+            const scan_registers = document.getElementById("scan_registers").checked;
+            const scan_coils = document.getElementById("scan_coils").checked;
+            const scan_discrete_inputs = document.getElementById("scan_discrete_inputs").checked;
+            const scan_input_registers = document.getElementById("scan_input_registers").checked;
+            const discover_slave_ids = document.getElementById("discover_slave_ids").checked;
+            const slave_id_start = document.getElementById("slave_id_start").value || 1;
+            const slave_id_end = document.getElementById("slave_id_end").value || 255;
+            
+            if (!ip) {
+                alert("Target IP is required!");
+                return;
+            }
+            
+            if (!discover_slave_ids && !scan_registers && !scan_coils && !scan_discrete_inputs && !scan_input_registers) {
+                alert("Select at least one scan option or enable slave ID discovery!");
+                return;
+            }
+            
+            document.getElementById("scan-output").innerText = "Starting scan...";
+            document.getElementById("progress-bar").style.width = "0%";
+            document.getElementById("progress-text").innerText = "Starting...";
+            
+            fetch('/scan', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    ip, port, slave_id, start_address, end_address,
+                    scan_registers, scan_coils, scan_discrete_inputs, scan_input_registers,
+                    discover_slave_ids, slave_id_start, slave_id_end
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "started") {
+                    pollScanStatus();
+                } else {
+                    document.getElementById("scan-output").innerText = "Error starting scan: " + data.message;
+                }
+            })
+            .catch(error => {
+                document.getElementById("scan-output").innerText = "Error: " + error;
+            });
+        }
+        
+        // Poll scan status
+        function pollScanStatus() {
+            const statusInterval = setInterval(() => {
+                fetch('/scan_status')
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById("progress-bar").style.width = data.progress + "%";
+                        document.getElementById("progress-text").innerText = data.message;
+                        
+                        if (data.status === "completed" || data.status === "error" || data.status === "aborted" || data.status === "failed") {
+                            clearInterval(statusInterval);
+                            getScanResults();
+                        }
+                    })
+                    .catch(error => {
+                        document.getElementById("progress-text").innerText = "Error polling status";
+                        clearInterval(statusInterval);
+                    });
+            }, 500);
+        }
+        
+        // Get scan results
+        function getScanResults() {
+            fetch('/scan_results')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("scan-output").innerText = JSON.stringify(data, null, 2);
+                    
+                    // Auto-fill slave ID from discovery if applicable
+                    if (data.discovered_slave_ids && data.discovered_slave_ids.length > 0) {
+                        document.getElementById("exploit_slave_id").value = data.discovered_slave_ids[0];
+                    }
+                })
+                .catch(error => {
+                    document.getElementById("scan-output").innerText = "Error fetching results: " + error;
+                });
+        }
+        
+        // Stop scan
+        function stopScan() {
+            fetch('/stop_scan', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("progress-text").innerText = data.message;
+                })
+                .catch(error => {
+                    document.getElementById("progress-text").innerText = "Error stopping scan: " + error;
+                });
+        }
+        
+        // Start exploit
+        function startExploit() {
+            const ip = document.getElementById("exploit_ip").value;
+            const port = document.getElementById("exploit_port").value || 502;
+            const slave_id = document.getElementById("exploit_slave_id").value || 1;
+            
+            const write_register = document.getElementById("write_register").checked;
+            const register_address = document.getElementById("register_address").value;
+            const register_value = document.getElementById("register_value").value;
+            
+            const write_coil = document.getElementById("write_coil").checked;
+            const coil_address = document.getElementById("coil_address").value;
+            const coil_value = document.getElementById("coil_value").value;
+            
+            if (!ip) {
+                alert("Target IP is required!");
+                return;
+            }
+            
+            if (!write_register && !write_coil) {
+                alert("Select at least one exploit option!");
+                return;
+            }
+            
+            if (write_register && (!register_address || !register_value)) {
+                alert("Register address and value are required!");
+                return;
+            }
+            
+            if (write_coil && !coil_address) {
+                alert("Coil address is required!");
+                return;
+            }
+            
+            document.getElementById("exploit-output").innerText = "Executing exploit...";
+            
+            fetch('/exploit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    ip, port, slave_id,
+                    write_register, register_address, register_value,
+                    write_coil, coil_address, coil_value
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("exploit-output").innerText = JSON.stringify(data, null, 2);
+                showResultTab('exploit-results');
+            })
+            .catch(error => {
+                document.getElementById("exploit-output").innerText = "Error: " + error;
+            });
+        }
+        
+        // Start DoS attack
+        function startDosAttack() {
+            const ip = document.getElementById("exploit_ip").value;
+            const port = document.getElementById("exploit_port").value || 502;
+            const slave_id = document.getElementById("exploit_slave_id").value || 1;
+            
+            const dos_write_register = document.getElementById("dos_write_register").checked;
+            const dos_register_address = document.getElementById("dos_register_address").value || 0;
+            
+            const dos_write_coil = document.getElementById("dos_write_coil").checked;
+            const dos_coil_address = document.getElementById("dos_coil_address").value || 0;
+            
+            const intensity = document.getElementById("intensity").value;
+            const rate = document.getElementById("rate").value;
+            const duration = document.getElementById("duration").value;
+            
+            if (!ip) {
+                alert("Target IP is required!");
+                return;
+            }
+            
+            if (!dos_write_register && !dos_write_coil) {
+                alert("Select at least one DoS attack method!");
+                return;
+            }
+            
+            if (confirm("WARNING: DoS attacks may disrupt or damage industrial systems. Continue?")) {
+                document.getElementById("dos-output").innerText = "Launching DoS attack...";
+                document.getElementById("dos-status").innerText = "Status: Attacking";
+                document.getElementById("dos-status").className = "status-indicator attacking";
+                
+                fetch('/dos_attack', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        ip, port, slave_id,
+                        dos_write_register, dos_register_address,
+                        dos_write_coil, dos_coil_address,
+                        intensity, rate, duration
+                    }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("dos-output").innerText = JSON.stringify(data, null, 2);
+                    
+                    if (duration > 0) {
+                        // If duration was set, attack is complete
+                        document.getElementById("dos-status").innerText = "Status: Completed";
+                        document.getElementById("dos-status").className = "status-indicator idle";
+                    } else {
+                        // Start polling for status if running indefinitely
+                        pollDosStatus();
+                    }
+                    
+                    showResultTab('dos-results');
+                })
+                .catch(error => {
+                    document.getElementById("dos-output").innerText = "Error: " + error;
+                    document.getElementById("dos-status").innerText = "Status: Error";
+                    document.getElementById("dos-status").className = "status-indicator error";
+                });
+            }
+        }
+        
+        // Poll DoS attack status
+        function pollDosStatus() {
+            const statusInterval = setInterval(() => {
+                fetch('/dos_status')
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === "running") {
+                            document.getElementById("dos-status").innerText = "Status: Attacking";
+                            document.getElementById("dos-status").className = "status-indicator attacking";
+                        } else {
+                            document.getElementById("dos-status").innerText = "Status: " + data.status;
+                            document.getElementById("dos-status").className = "status-indicator idle";
+                            clearInterval(statusInterval);
+                        }
+                    })
+                    .catch(error => {
+                        document.getElementById("dos-status").innerText = "Status: Error";
+                        document.getElementById("dos-status").className = "status-indicator error";
+                        clearInterval(statusInterval);
+                    });
+            }, 1000);
+        }
+        
+        // Stop DoS attack
+        function stopDosAttack() {
+            fetch('/stop_dos_attack', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("dos-status").innerText = "Status: " + data.message;
+                    document.getElementById("dos-status").className = "status-indicator stopping";
+                    document.getElementById("dos-output").innerText += "\n\n" + data.message;
+                })
+                .catch(error => {
+                    document.getElementById("dos-status").innerText = "Status: Error stopping";
+                    document.getElementById("dos-status").className = "status-indicator error";
+                });
+        }
+        
+        // Show/hide slave ID range fields based on checkbox
+        document.getElementById("discover_slave_ids").addEventListener("change", function() {
+            const rangeDiv = document.getElementById("slave-id-range");
+            rangeDiv.style.display = this.checked ? "block" : "none";
+        });
+        
+        // Initialize UI state
+        document.getElementById("slave-id-range").style.display = "none";
+        document.getElementById("dos-status").className = "status-indicator idle";
+    </script>
+</body>
+</html>

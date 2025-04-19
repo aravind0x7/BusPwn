@@ -1,0 +1,2 @@
+Flask==2.3.3
+pymodbus==3.5.3

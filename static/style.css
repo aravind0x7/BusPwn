@@ -1,0 +1,435 @@
+/* Variables */
+:root {
+  --primary-color: #00ff00;
+  --secondary-color: #303030;
+  --dark-bg: #121212;
+  --medium-bg: #1e1e1e;
+  --light-bg: #2d2d2d;
+  --text-color: #e0e0e0;
+  --danger-color: #ff3e3e;
+  --warning-color: #ffbf00;
+  --success-color: #00cc66;
+  --highlight: #00ff00;
+  --glow: 0 0 5px rgba(0, 255, 0, 0.7);
+}
+
+/* Global Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--dark-bg);
+  color: var(--text-color);
+  font-family: 'Courier New', monospace;
+  line-height: 1.6;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: var(--medium-bg);
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--primary-color);
+}
+
+/* Typography */
+h1, h2, h3, h4 {
+  color: var(--primary-color);
+  margin-bottom: 15px;
+  text-shadow: var(--glow);
+}
+
+h1 {
+  font-size: 36px;
+  text-align: center;
+  margin-top: 10px;
+  letter-spacing: 2px;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid var(--primary-color);
+  padding-bottom: 5px;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+.hacker-text {
+  color: var(--text-color);
+  text-align: center;
+  font-style: italic;
+  margin-bottom: 30px;
+}
+
+/* Form Elements */
+input, select, button {
+  background-color: var(--light-bg);
+  border: 1px solid var(--primary-color);
+  color: var(--text-color);
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+  margin: 5px 0;
+}
+
+input:focus, select:focus {
+  outline: none;
+  box-shadow: var(--glow);
+}
+
+input[type="checkbox"] {
+  margin-right: 8px;
+  accent-color: var(--primary-color);
+}
+
+input[type="range"] {
+  width: 100%;
+  background-color: var(--light-bg);
+}
+
+button {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+  min-width: 120px;
+}
+
+button:hover {
+  background-color: var(--primary-color);
+  color: var(--dark-bg);
+  box-shadow: var(--glow);
+}
+
+/* Specific Button Types */
+.primary-button {
+  background-color: #005500;
+}
+
+.secondary-button {
+  background-color: #333333;
+}
+
+.danger-button {
+  background-color: #550000;
+  border-color: var(--danger-color);
+  color: var(--danger-color);
+}
+
+.danger-button:hover {
+  background-color: var(--danger-color);
+  color: var(--dark-bg);
+  box-shadow: 0 0 5px rgba(255, 0, 0, 0.7);
+}
+
+.critical-button {
+  background-color: #330000;
+  border-color: var(--danger-color);
+  color: var(--danger-color);
+  animation: pulse 2s infinite;
+}
+
+.critical-button:hover {
+  background-color: var(--danger-color);
+  color: var(--dark-bg);
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.9);
+}
+
+.warning-button {
+  background-color: #553300;
+  border-color: var(--warning-color);
+  color: var(--warning-color);
+}
+
+.warning-button:hover {
+  background-color: var(--warning-color);
+  color: var(--dark-bg);
+  box-shadow: 0 0 5px rgba(255, 191, 0, 0.7);
+}
+
+/* Sections */
+.form-section {
+  background-color: var(--light-bg);
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  border-left: 3px solid var(--primary-color);
+}
+
+.result-section {
+  background-color: var(--light-bg);
+  padding: 20px;
+  border-radius: 6px;
+  margin-top: 30px;
+  border-left: 3px solid var(--primary-color);
+}
+
+/* Input Groups */
+.ip-port-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.ip-port-group input:first-child {
+  flex: 2;
+}
+
+.address-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.checkbox-group {
+  margin: 15px 0;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.slider-group {
+  margin: 15px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.slider-group label {
+  min-width: 120px;
+}
+
+.slider-group input[type="range"] {
+  flex: 1;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  margin-bottom: 15px;
+  border-bottom: 1px solid var(--primary-color);
+}
+
+.tab-button {
+  padding: 8px 15px;
+  margin-right: 5px;
+  background-color: var(--dark-bg);
+  border: 1px solid var(--primary-color);
+  border-bottom: none;
+  border-radius: 5px 5px 0 0;
+  cursor: pointer;
+}
+
+.tab-button.active {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.tab-content {
+  padding: 15px;
+  border: 1px solid var(--primary-color);
+  border-top: none;
+  background-color: var(--medium-bg);
+  display: none;
+}
+
+/* Result Tabs */
+.result-tabs {
+  display: flex;
+  margin-bottom: 15px;
+  border-bottom: 1px solid var(--primary-color);
+}
+
+.result-tab {
+  padding: 8px 15px;
+  margin-right: 5px;
+  background-color: var(--dark-bg);
+  border: 1px solid var(--primary-color);
+  border-bottom: none;
+  border-radius: 5px 5px 0 0;
+  cursor: pointer;
+}
+
+.result-tab.active {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.result-tab-content {
+  padding: 15px;
+  border: 1px solid var(--primary-color);
+  border-top: none;
+  background-color: var(--medium-bg);
+  display: none;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+/* Results */
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-family: 'Courier New', monospace;
+  background-color: var(--dark-bg);
+  padding: 15px;
+  border-radius: 4px;
+  border-left: 3px solid var(--primary-color);
+  overflow-x: auto;
+}
+
+.result-mini {
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+}
+
+.result-mini.success {
+  background-color: rgba(0, 204, 102, 0.2);
+  border-left: 3px solid var(--success-color);
+}
+
+.result-mini.error {
+  background-color: rgba(255, 62, 62, 0.2);
+  border-left: 3px solid var(--danger-color);
+}
+
+.result-mini.testing {
+  background-color: rgba(255, 191, 0, 0.2);
+  border-left: 3px solid var(--warning-color);
+}
+
+/* Progress Bar */
+.progress-container {
+  width: 100%;
+  height: 20px;
+  background-color: var(--dark-bg);
+  border-radius: 10px;
+  margin: 15px 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: var(--primary-color);
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-color);
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
+  font-size: 12px;
+}
+
+/* Status Indicator */
+.status-indicator {
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 4px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.status-indicator.idle {
+  background-color: var(--dark-bg);
+  border: 1px solid var(--text-color);
+}
+
+.status-indicator.attacking {
+  background-color: rgba(255, 0, 0, 0.2);
+  border: 1px solid var(--danger-color);
+  animation: pulse 2s infinite;
+}
+
+.status-indicator.stopping {
+  background-color: rgba(255, 191, 0, 0.2);
+  border: 1px solid var(--warning-color);
+}
+
+.status-indicator.error {
+  background-color: rgba(255, 62, 62, 0.2);
+  border: 1px solid var(--danger-color);
+}
+
+/* Attack Description */
+.attack-description {
+  background-color: rgba(255, 191, 0, 0.1);
+  border-left: 3px solid var(--warning-color);
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.attack-description p {
+  margin: 0;
+  font-size: 14px;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  margin-top: 30px;
+  padding: 10px;
+  color: var(--text-color);
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+  
+  .ip-port-group, .address-group {
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .button-group {
+    flex-direction: column;
+  }
+  
+  .tabs, .result-tabs {
+    flex-wrap: wrap;
+  }
+}
+
+/* Animations */
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+/* Utility Classes */
+.hidden {
+  display: none;
+}
