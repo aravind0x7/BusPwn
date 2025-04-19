@@ -53,7 +53,7 @@ python pwn.py
 
 ## 🔧 Usage
 
-After launching the tool, access the localhost ip ([localhost:5000](https://localhost:5000)) in your browser to interact with various sections to scan and exploit Modbus devices. Here's an overview of what you can do:
+After launching the tool, access the localhost ip ([127.0.0.1:5000](https://127.0.0.1:5000)) in your browser to interact with various sections to scan and exploit Modbus devices. Here's an overview of what you can do:
 
 - **Modbus Scan**: Enter a target IP and perform a device scan.
 - **Run Attacks**: Select from various attacks like **DoS** or **Command Injection** to test the resilience of the Modbus devices.
