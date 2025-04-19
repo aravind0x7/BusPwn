@@ -32,6 +32,7 @@ python -m venv venv
 
 # Activate it
 # On Windows
+Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process (Optional)
 venv\Scripts\activate
 # On Linux/macOS
 source venv/bin/activate
@@ -58,7 +59,7 @@ After launching the tool, access the localhost ip ([localhost:5000](https://loca
 - **Run Attacks**: Select from various attacks like **DoS** or **Command Injection** to test the resilience of the Modbus devices.
 - **Customizable Settings**: Adjust time intervals, ports, and other attack parameters using the GUI options.
 
-## 🎯 Target Audience
+## 🎯 Tinkered For
 - **Cybersecurity professionals** testing Modbus-based ICS/OT systems.
 - **Red teamers** simulating real-world attacks on industrial networks.
 - **Researchers** studying vulnerabilities in legacy systems and protocols.
